@@ -1,148 +1,75 @@
-// ============================================
-// TASK 1: Body Event Handlers
-// ============================================
-
-// onload - виконується після повного завантаження сторінки
 window.addEventListener('load', function() {
-    console.log('✅ Сторінка повністю завантажена (onload)');
+    console.log('Сторінка повністю завантажена (onload)');
 });
 
-// onunload - виконується при виході зі сторінки
 window.addEventListener('beforeunload', function(e) {
-    console.log('👋 Користувач виходить зі сторінки (onbeforeunload)');
+    console.log('Користувач виходить зі сторінки (onbeforeunload)');
 });
 
-// onafterprint - після друку
-window.addEventListener('afterprint', function() {
-    alert('📄 Документ роздруковано (onafterprint)');
-    console.log('Документ роздруковано');
-});
-
-// onbeforeprint - перед друком
-window.addEventListener('beforeprint', function() {
-    alert('🖨️ Підготовка до друку (onbeforeprint)');
-    console.log('Підготовка до друку');
-});
-
-// onblur - втрата фокусу вікном
-window.addEventListener('blur', function() {
-    console.log('😴 Вікно втратило фокус (onblur)');
-});
-
-// onfocus - отримання фокусу вікном
 window.addEventListener('focus', function() {
-    console.log('👁️ Вікно отримало фокус (onfocus)');
+    console.log('Вікно отримало фокус (onfocus)');
 });
 
-// onerror - обробка помилок
 window.addEventListener('error', function(e) {
-    console.error('❌ Виникла помилка (onerror):', e.message);
+    console.error('Виникла помилка (onerror):', e.message);
 });
 
-// onresize - зміна розміру вікна
 window.addEventListener('resize', function() {
-    console.log('📐 Розмір вікна змінено (onresize):', window.innerWidth + 'x' + window.innerHeight);
+    console.log('Розмір вікна змінено (onresize):', window.innerWidth + 'x' + window.innerHeight);
 });
-
-// onhashchange - зміна хешу в URL
-window.addEventListener('hashchange', function() {
-    console.log('🔗 Хеш URL змінено (onhashchange):', window.location.hash);
-});
-
-// onoffline - перехід в офлайн режим
-window.addEventListener('offline', function() {
-    alert('📡 Відсутнє підключення до мережі (onoffline)');
-    console.log('Перехід в офлайн режим');
-});
-
-// ononline - підключення до мережі
-window.addEventListener('online', function() {
-    alert('🌐 Підключення до мережі відновлено (ononline)');
-    console.log('Підключення до мережі');
-});
-
-// onpageshow - коли сторінка стає видимою
-window.addEventListener('pageshow', function() {
-    console.log('👀 Сторінка стала видимою (onpageshow)');
-});
-
-// onpagehide - коли сторінка приховується
-window.addEventListener('pagehide', function() {
-    console.log('🙈 Сторінка приховується (onpagehide)');
-});
-
-// onstorage - зміни в localStorage
-window.addEventListener('storage', function(e) {
-    console.log('💾 Зміни в сховищі (onstorage):', e.key);
-});
-
-// onpopstate - зміна історії браузера
-window.addEventListener('popstate', function(e) {
-    console.log('⏮️ Зміна історії браузера (onpopstate):', e.state);
-});
-
-
-// ============================================
-// TASK 2: Heading and Text Element Event Handlers
-// ============================================
 
 function setupElementEventHandlers() {
     const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, b, i, strong, em');
     
     elements.forEach(function(element) {
         element.addEventListener('click', function(e) {
-            console.log('🖱️ Клік на елемент:', this.tagName);
+            console.log('Клік на елемент:', this.tagName);
             this.style.backgroundColor = '#ffeb3b';
             setTimeout(() => { this.style.backgroundColor = ''; }, 500);
         });
 
         element.addEventListener('dblclick', function(e) {
-            console.log('🖱️🖱️ Подвійний клік на:', this.tagName);
+            console.log('Подвійний клік на:', this.tagName);
             this.style.color = '#e91e63';
             alert('Подвійний клік на: ' + this.textContent);
         });
 
         element.addEventListener('mousedown', function(e) {
-            console.log('⬇️ Кнопка миші натиснута на:', this.tagName);
+            console.log('Кнопка миші натиснута на:', this.tagName);
             this.style.transform = 'scale(0.95)';
         });
 
         element.addEventListener('mouseup', function(e) {
-            console.log('⬆️ Кнопка миші відпущена на:', this.tagName);
+            console.log('Кнопка миші відпущена на:', this.tagName);
             this.style.transform = 'scale(1)';
         });
 
         element.addEventListener('mouseover', function(e) {
-            console.log('👆 Миша наведена на:', this.tagName);
+            console.log('Миша наведена на:', this.tagName);
             this.style.textDecoration = 'underline';
             this.style.cursor = 'pointer';
         });
 
         element.addEventListener('mouseout', function(e) {
-            console.log('👇 Миша покинула:', this.tagName);
+            console.log('Миша покинула:', this.tagName);
             this.style.textDecoration = 'none';
         });
 
         element.setAttribute('draggable', 'true');
 
         element.addEventListener('dragstart', function(e) {
-            console.log('🚀 Початок перетягування:', this.tagName);
+            console.log('Початок перетягування:', this.tagName);
             this.style.opacity = '0.5';
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/html', this.innerHTML);
         });
 
         element.addEventListener('dragend', function(e) {
-            console.log('🏁 Кінець перетягування:', this.tagName);
+            console.log('Кінець перетягування:', this.tagName);
             this.style.opacity = '1';
         });
     });
 }
-
-
-// ============================================
-// TASK 3: Run Task - List All Form Elements (Variant 3.10)
-// ============================================
 
 function runTask() {
     const form = document.getElementById('productForm');
@@ -176,11 +103,6 @@ function runTask() {
     console.log(output);
     alert('Інформація про форму виведена в текстове поле та консоль!');
 }
-
-
-// ============================================
-// TASK 5: Regex Search (Variants 5.1-5.4)
-// ============================================
 
 function searchText() {
     const inputText = document.getElementById('searchInput').value;
@@ -219,11 +141,6 @@ function searchText() {
     outputArea.value = result;
     console.log(result);
 }
-
-
-// ============================================
-// TASK 6: Array Task (Variant 6.10)
-// ============================================
 
 function arrayTask() {
     const N = 8;
@@ -277,11 +194,6 @@ function arrayTask() {
     alert('Масиви створено! Результат виведено в текстове поле та консоль.');
 }
 
-
-// ============================================
-// TASK 4: Image Event Handlers
-// ============================================
-
 function setupImageEventHandlers() {
     const images = document.querySelectorAll('img');
     
@@ -308,15 +220,10 @@ function setupImageEventHandlers() {
     });
 }
 
-
-// ============================================
-// Ініціалізація при завантаженні сторінки
-// ============================================
-
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 DOM завантажено, ініціалізація обробників подій...');
+    console.log('DOM завантажено, ініціалізація обробників подій...');
     setupElementEventHandlers();
     setupImageEventHandlers();
-    console.log('✅ Всі обробники подій налаштовано!');
+    console.log('Всі обробники подій налаштовано!');
 });
 
